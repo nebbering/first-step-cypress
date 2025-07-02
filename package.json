@@ -1,0 +1,14 @@
+{
+  "name": "login-teste-cypress",
+  "version": "1.0.0",
+  "description": "First Test With Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luan H. Nebbering",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.5.1"
+  }
+}
