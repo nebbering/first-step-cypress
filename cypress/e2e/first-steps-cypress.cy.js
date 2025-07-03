@@ -35,14 +35,40 @@ const selectorsList = {
     cy.get(selectorsList.dashboardGrid).should('be.visible')
   })
 
-  it('login-usuário-senha-errados', () => {
+  it('login-usuário-senha-inválidos', () => {
     // Verificar se o título da página é "OrangeHRM"
     cy.title(selectorsList.title).should('include', 'OrangeHRM')
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher os campos de login e senha e clicar no botão de login
-    cy.get(selectorsList.loginInput).type('Adm') // Usuário incorreto
-    cy.get(selectorsList.passwordInput).type('admin') // Senha incorreta
+    cy.get(selectorsList.loginInput).type('Adm') // Usuário Inválido
+    cy.get(selectorsList.passwordInput).type('admin') // Senha Inválida
+    cy.get(selectorsList.loginButton).click()
+    // Verificar se a mensagem de erro é exibida
+    cy.get(selectorsList.wrongCredentialsMessage).should('contain', 'Invalid credentials')
+  })
+
+  it('login-senha-inválida', () => {
+    // Verificar se o título da página é "OrangeHRM"
+    cy.title(selectorsList.title).should('include', 'OrangeHRM')
+    // Verificar se o elemento de login está visível
+    cy.get(selectorsList.elementLogin).should('be.visible')
+    // Preencher os campos de login e senha e clicar no botão de login
+    cy.get(selectorsList.loginInput).type('Admin') // Usuário Válido
+    cy.get(selectorsList.passwordInput).type('adminis') // Senha Inválida
+    cy.get(selectorsList.loginButton).click()
+    // Verificar se a mensagem de erro é exibida
+    cy.get(selectorsList.wrongCredentialsMessage).should('contain', 'Invalid credentials')
+  })
+
+  it('login-usuário-inválido', () => {
+    // Verificar se o título da página é "OrangeHRM"
+    cy.title(selectorsList.title).should('include', 'OrangeHRM')
+    // Verificar se o elemento de login está visível
+    cy.get(selectorsList.elementLogin).should('be.visible')
+    // Preencher os campos de login e senha e clicar no botão de login
+    cy.get(selectorsList.loginInput).type('Adm') // Usuário Inválido
+    cy.get(selectorsList.passwordInput).type('admin123') // Senha Válida
     cy.get(selectorsList.loginButton).click()
     // Verificar se a mensagem de erro é exibida
     cy.get(selectorsList.wrongCredentialsMessage).should('contain', 'Invalid credentials')
@@ -59,7 +85,7 @@ const selectorsList = {
     cy.get(selectorsList.withoutCredentialsMessage).should('contain.text', 'Required')
   })
 
-  it('login-campos-vazios-usuario', () => {
+  it('login-usuario-vazio', () => {
     // Verificar se o título da página é "OrangeHRM"
     cy.title(selectorsList.title).should('include', 'OrangeHRM')
     // Verificar se o elemento de login está visível
@@ -71,7 +97,7 @@ const selectorsList = {
     cy.get(selectorsList.withoutCredentialsMessage).should('contain.text', 'Required')
   })
 
-  it('login-campos-vazios-senha', () => {
+  it('login-senha-vazia', () => {
     // Verificar se o título da página é "OrangeHRM"
     cy.title(selectorsList.title).should('include', 'OrangeHRM')
     // Verificar se o elemento de login está visível
