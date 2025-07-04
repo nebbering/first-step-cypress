@@ -14,11 +14,11 @@ const selectorsList = {
   withoutCredentialsMessage: '.oxd-input-group > .oxd-text',
   dashboardGrid: ".orangehrm-dashboard-grid"
 }
-
+ 
   beforeEach(() => {
 
   // Acessar a página de login do OrangeHRM
-  cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+  cy.visit('/auth/login')
   })
 
   it('login-bem-sucedido', () => {
