@@ -12,7 +12,8 @@ const selectorsList = {
   sectionTitleTopBar: '.oxd-topbar-header-breadcrumb > .oxd-text',
   wrongCredentialsMessage: '.oxd-alert-content > .oxd-text',
   withoutCredentialsMessage: '.oxd-input-group > .oxd-text',
-  dashboardGrid: ".orangehrm-dashboard-grid"
+  dashboardGrid: ".orangehrm-dashboard-grid",
+  myInfoButton: "[href='/web/index.php/pim/viewMyDetails']"
 }
  
   beforeEach(() => {
@@ -34,6 +35,10 @@ const selectorsList = {
     cy.url().should('include', 'dashboard')
     // Verificar se o elemento está visivel na página do dashboard
     cy.get(selectorsList.dashboardGrid).should('be.visible')
+    // Clicar no botão My Info na barra de navegação
+    cy.get(selectorsList.myInfoButton).click()
+    // Verificar se redirecionou para a página de informações pessoais
+
   })
 
   it('login-usuário-senha-inválidos', () => {
