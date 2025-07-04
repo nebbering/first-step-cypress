@@ -11,7 +11,22 @@ const selectorsList = {
   wrongCredentialsMessage: '.oxd-alert-content > .oxd-text',
   withoutCredentialsMessage: '.oxd-input-group > .oxd-text',
   dashboardGrid: ".orangehrm-dashboard-grid"
+}
 
+//Variável com os dados do usuário
+const userData = {
+  userValid: {
+    userName: 'Admin',
+    userPassword: 'admin123'
+  },
+  userInvalid: {
+    userName: 'Teste',
+    userPassword: 'Teste'
+  },
+  empityUser: {
+    userName: '',
+    userPassword: ''
+  }
 }
 
   beforeEach(() => {
@@ -26,8 +41,8 @@ const selectorsList = {
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher os campos de login e senha e clicar no botão de login
-    cy.get(selectorsList.loginInput).type('Admin')
-    cy.get(selectorsList.passwordInput).type('admin123')
+    cy.get(selectorsList.loginInput).type(userData.userValid.userName) // Usuário Válido
+    cy.get(selectorsList.passwordInput).type(userData.userValid.userPassword) // Senha Válida
     cy.get(selectorsList.loginButton).click()
     // Verificar se o login foi bem-sucedido verificando se está na página do dashboard
     cy.url().should('include', 'dashboard')
@@ -41,8 +56,8 @@ const selectorsList = {
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher os campos de login e senha e clicar no botão de login
-    cy.get(selectorsList.loginInput).type('Adm') // Usuário Inválido
-    cy.get(selectorsList.passwordInput).type('admin') // Senha Inválida
+    cy.get(selectorsList.loginInput).type(userData.userInvalid.userName) // Usuário Inválido
+    cy.get(selectorsList.passwordInput).type(userData.userInvalid.userPassword) // Senha Inválida
     cy.get(selectorsList.loginButton).click()
     // Verificar se a mensagem de erro é exibida
     cy.get(selectorsList.wrongCredentialsMessage).should('contain', 'Invalid credentials')
@@ -54,8 +69,8 @@ const selectorsList = {
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher os campos de login e senha e clicar no botão de login
-    cy.get(selectorsList.loginInput).type('Admin') // Usuário Válido
-    cy.get(selectorsList.passwordInput).type('adminis') // Senha Inválida
+    cy.get(selectorsList.loginInput).type(userData.userValid.userName) // Usuário Válido
+    cy.get(selectorsList.passwordInput).type(userData.userInvalid.userPassword) // Senha Inválida
     cy.get(selectorsList.loginButton).click()
     // Verificar se a mensagem de erro é exibida
     cy.get(selectorsList.wrongCredentialsMessage).should('contain', 'Invalid credentials')
@@ -67,8 +82,8 @@ const selectorsList = {
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher os campos de login e senha e clicar no botão de login
-    cy.get(selectorsList.loginInput).type('Adm') // Usuário Inválido
-    cy.get(selectorsList.passwordInput).type('admin123') // Senha Válida
+    cy.get(selectorsList.loginInput).type(userData.userInvalid.userName) // Usuário Inválido
+    cy.get(selectorsList.passwordInput).type(userData.userValid.userPassword) // Senha Válida
     cy.get(selectorsList.loginButton).click()
     // Verificar se a mensagem de erro é exibida
     cy.get(selectorsList.wrongCredentialsMessage).should('contain', 'Invalid credentials')
@@ -91,7 +106,7 @@ const selectorsList = {
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher o campo de senha e clicar no botão de login
-    cy.get(selectorsList.passwordInput).type('admin123')
+    cy.get(selectorsList.passwordInput).type(userData.userValid.userPassword)
     cy.get(selectorsList.loginButton).click()
     // Verificar se o alerta é exibido
     cy.get(selectorsList.withoutCredentialsMessage).should('contain.text', 'Required')
@@ -103,7 +118,7 @@ const selectorsList = {
     // Verificar se o elemento de login está visível
     cy.get(selectorsList.elementLogin).should('be.visible')
     // Preencher o campo de usuário e clicar no botão de login
-    cy.get(selectorsList.loginInput).type('Admin')
+    cy.get(selectorsList.loginInput).type(userData.userValid.userName)
     cy.get(selectorsList.loginButton).click()
     // Verificar se o alerta é exibido
     cy.get(selectorsList.withoutCredentialsMessage).should('contain.text', 'Required')
