@@ -1,3 +1,5 @@
+import userData from '../fixtures/userData.json'
+
 describe('Funcionalidade de Login', () => {
 
 //Variável com os Seletores
@@ -11,22 +13,6 @@ const selectorsList = {
   wrongCredentialsMessage: '.oxd-alert-content > .oxd-text',
   withoutCredentialsMessage: '.oxd-input-group > .oxd-text',
   dashboardGrid: ".orangehrm-dashboard-grid"
-}
-
-//Variável com os dados do usuário
-const userData = {
-  userValid: {
-    userName: 'Admin',
-    userPassword: 'admin123'
-  },
-  userInvalid: {
-    userName: 'Teste',
-    userPassword: 'Teste'
-  },
-  empityUser: {
-    userName: '',
-    userPassword: ''
-  }
 }
 
   beforeEach(() => {
